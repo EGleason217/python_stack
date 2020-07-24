@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <div id="wrapper">
+        <h1>This is the Dojo Survey</h1>
+        <form action="/process" method="POST">
+            {% csrf_token %}
+            Name: <input type="text" name="user_name">
+            Languages: <select name='language'>
+                <option value="python">Python</option>
+                <option value="c#">C#</option>
+                <option value="java">Java</option>
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+            </select>
+            Locations: <select name='location'>
+                <option value="burbank">Burbank</option>
+                <option value="chicago">Chicago</option>
+                <option value="dallas">Dallas</option>
+                <option value="seatlle">Seattle</option>
+                <option value="dc">DC</option>
+            </select>
+            <input type="submit" value="View User">
+        </form>
+    </div>
+</body>
+</html>
