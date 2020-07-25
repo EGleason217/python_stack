@@ -6,7 +6,13 @@
     <title>New User</title>
 </head>
 <body>
-    <h1>New Ninja: </h1>
-    <p>Name: {{user_name}}, Location: {{location}}, Language: {{language}}</p>
+    <div id="container">
+        <h2>Subitted Info</h2>
+        <p><span>Name: </span>{{ result.user_name }}</p>
+        <p><span>Dojo Location: </span>{{ result.location }}</p>
+        <p><span>Favorite Language: </span>{{ result.language }}</p>
+        <p><span>Comment: </span>{{ result.comment }}</p>
+        <a href="/" class="btn btn-primary">Go Back</a>
+    </div>
 </body>
 </html>
