@@ -1,0 +1,53 @@
+body {
+	background-size: cover;
+	background-color: #273441;
+	color: white;
+}
+.navbar-nav {
+	font-family: 'Black Ops One', cursive;
+	max-width: 100%;
+	max-height: 100%;
+	font-size: 1.8rem;
+	border-bottom: solid white;
+}
+.mainnav{
+	padding-left: 30px;
+	padding-top: 30px;
+}
+.firstrow {
+	padding-top: 50px;
+}
+.insiderow{
+	padding-top: 20px;
+}
+h5{
+	text-align: justify;
+	border-width: 1rem;
+}
+.morethancam{
+	color:#2ea3f2;
+	font-family: 'Black Ops One', cursive;
+	font-size: 2.8rem;
+}
+.anyone{
+	font-weight: bold;
+}
+
+.title1 {
+	color:#2ea3f2;
+}
+.footer{
+	text-align: center;
+	border-color: white;
+	padding-top: .4rem;
+}
+.profprof {
+	font-family: 'Shrikhand', cursive;
+	color: #2ea3f2;
+}
+.profright {
+	text-align: right;
+}
+li{
+	font-size: 1.5rem;
+}
