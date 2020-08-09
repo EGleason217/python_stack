@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a student to all bootcamp courses</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Add a new Course</h2>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="row">
+            <form action="/create" method="POST">
+                {% csrf_token %}
+                <p>Name:</p>
+                <input type="text" name="name" id="name">
+        </div>
+        <div class="row">
+            <p>Description:</p>
+            <textarea name="description" id="description" cols="20" rows="5" class="form-control"></textarea>
+        </div>
+        <button class="btn btn-success addbtn">Add</button>
+        </form>
+    </div>
+    <h2>Courses</h2>
+    <div class="col align-self-center">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Description</th>
+                    <th>Date Added</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for i in course %}
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.description}}</td>
+                    <td>{{i.created_at}}</td>
+                    <td>
+                        <a href="{{i.id}}" class="badge badge-info">Show Comments</a>
+                        <a href="{{i.id}}/destroy" class="badge badge-danger">Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+</body>
+
+</html>
