@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>{{one_user.fname}} {{one_user.lname}}'s Profile</h1>
+    <a href="/wall">Return to Wall</a>
+    <h2>Their Posts</h2>
+    {% for mess in one_user.poster.all %}
+    <li>{{mess.content}}</li>
+    {% endfor %}
+
+</body>
+</html>

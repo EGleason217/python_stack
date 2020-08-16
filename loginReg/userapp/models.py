@@ -26,3 +26,31 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
 
+class MessageManager(models.Manager):
+    def validator(self, form):
+        errors = {}
+        if len(form ['content']) < 5:
+            errors['length'] = "Message must be at least 5 characters!"
+        return errors
+
+class Message(models.Model):
+    owner = models.ForeignKey(User, related_name="poster", on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = MessageManager()
+
+class CommentManager(models.Manager):
+    def validator(self, form):
+        errors ={}
+        if len(form ['content']) < 5:
+            errors['length'] = "Message must be at least 5 characters!"
+        return errors
+
+class Comment(models.Model):
+    message = models.ForeignKey(Message,related_name="comments",on_delete=models.CASCADE)
+    poster = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = CommentManager()

@@ -36,7 +36,7 @@ def login(request):
                 request.session['name'] = current_user.fname
                 request.session['user_id'] = current_user.id
                 request.session['function'] = "Logged In"
-            return(render(request, 'success.html'))
+            return(render(request, 'wall.html'))
     return redirect('/') 
 
 
@@ -46,3 +46,41 @@ def login(request):
 def logout(request):
     request.session.flush()
     return redirect('/')
+
+def wall(request):
+    context = {
+        'all_messages' : Message.objects.all(), 'all_comments' : Comment.objects.all()
+        }
+    return (render(request,'wall.html', context))
+
+def message(request):
+    if request.method == "POST":
+        errors = Message.objects.validator(request.POST)
+        if errors:
+            for key, values in errors.items():
+                messages.error(request, values)
+            return redirect('/wall')
+        post = Message.objects.create(content = request.POST['content'], owner = User.objects.get(id=request.session['user_id']))
+        return redirect("/wall")
+    redirect("/wall")
+
+def comment(request, id):
+    if request.method == "POST":
+        errors = Comment.objects.validator(request.POST)
+        if errors:
+            for key, values in errors.items():
+                messages.error(request, values)
+            return redirect('/wall')
+        comment = Comment.objects.create(content = request.POST['content'], message = Message.objects.get(id=id), poster = User.objects.get(id=request.session['user_id']))
+        return redirect("/wall")
+    redirect("/wall")
+
+def profile(request, id):
+    context = {
+        "one_user": User.objects.get(id=id)
+    }
+    return render(request,'profile.html', context)
+
+def delete(request, id):
+    Message.objects.get(id=id).delete()
+    return redirect("/wall")

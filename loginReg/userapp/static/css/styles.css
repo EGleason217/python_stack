@@ -1,8 +1,60 @@
-h1{
-    width: 45%;
-    display: inline-block;
+
+body{
+    color: black;
 }
 
-.container{
-    padding-top: 100px;
+#header{
+    display: inline-block;
+    width: 100%;
+    border: solid 5px black;
+
+}
+#header h1,h2{
+    display: inline;
+    padding-left: 70px;
+}
+
+#header a{
+    display: inline;
+    margin-left: 50rem;
+}
+#wall {
+    width: 60%;
+    margin: 10% 5% 5% 20%;
+}
+
+#wall h1{
+    text-align: center;
+}
+
+#button, input, optgroup, select, textarea{
+    border: solid blue 3px;
+}
+
+button, input, optgroup, select, textarea {
+    padding: 5px 10px 5px 10px;
+}
+
+.message{
+    text-align: center;
+    background-color: #145dbf;
+    color: white;
+    margin: 10px;
+    padding: 20px 30px 20px 30px;
+}
+.message h6,p, a {
+    margin: 0px;
+}
+#comments{
+    width: 80%;
+    margin-left: 10%;
+    background-color: white;
+    color: red;
+    border-bottom: solid red 4px;
+}
+
+.message a {
+    color: red;
+    font-size: 20px;
+    font-weight: 600;
 }
