@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Favorite Books</title>
+</head>
+
+<body>
+    <div id="header">
+        <h1>Welcome, {{request.session.name}}</h1>
+        <a href="/">Log Out</a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+            <h2>Add a Favorite Book</h2>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+            {% endif %}            
+            <form action="/add" method="post">
+                {% csrf_token %}
+                <h5>Title: </h5>
+                <input type="text" name="title">
+                <h5>Description:</h5>
+                <textarea name="desc" id="" cols="30" rows="10"></textarea>
+                <input type="submit" value="Add Book">
+            </form>   
+            </div>
+            <div class="col-6">
+                <h2>All Books</h2>
+                {% for book in all_books %}
+                <div class="book">
+                <h3><a href="/book/{{book.id}}">{{book.title}}</a></h3>
+                <h5>Uploaded By: {{book.uploaded_by.fname}} {{book.uploaded_by.lname}}</h5>
+                <a href="/delete/{{book.id}}">Delete this Book</a>
+                </div>
+                {% endfor %}
+            </div>
+</body>
+
+</html>

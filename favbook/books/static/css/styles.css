@@ -1,0 +1,10 @@
+p{
+    display: inline;
+}
+input{
+    display: block;
+}
+
+.book{
+    border: solid blue 10px;
+}
